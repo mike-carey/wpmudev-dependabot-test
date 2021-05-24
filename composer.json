@@ -40,6 +40,6 @@
     "wpackagist-plugin/yet-another-related-posts-plugin": "^5.10"
   },
   "require-dev": {
-    "wp-cli/wp-cli": "^2.4"
+    "wp-cli/wp-cli": "^2.3"
   }
 }
