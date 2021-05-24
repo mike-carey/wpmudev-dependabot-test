@@ -6,7 +6,7 @@ version: 2
 registries:
   wpmudev:
     type: composer-repository
-    url: https://wpmudev.com:443
+    url: https://wpmudev.com/
     username: ${{ secrets.WPMUDEV_API_KEY }}
     password: ''
 updates:
