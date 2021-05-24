@@ -1,0 +1,42 @@
+{
+  "name": "mikecarey/wpmudev-dependabot-test",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Mike Carey",
+      "email": "mike-carey@users.noreply.github.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "composer",
+      "url": "https://wpmudev.com"
+    }
+  ],
+  "extra": {
+    "wordpress-install-dir": "html",
+    "installer-paths": {
+      "html/wp-content/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "html/wp-content/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "html/wp-content/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    }
+  },
+  "require": {
+    "php": ">=7.3.0",
+    "johnpbloch/wordpress": "^5.7",
+    "wpmudev/wp-smush-pro": "^3.8",
+    "wpmudev/wpmu-dev-dashboard": "^4.10",
+    "wpackagist-theme/twentytwenty": "^1.6",
+    "wpackagist-plugin/yet-another-related-posts-plugin": "^5.10"
+  }
+}

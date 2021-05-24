@@ -1,0 +1,18 @@
+# Composer storage
+/vendor/
+
+# Output directory
+/html/
+
+# WPMU Dev Secret API Key
+/.wpmudev-api-key
+
+# Secrets
+/.env
+
+# backups and temps
+*.bak
+*.tmp
+
+*.log
+.DS_Store
