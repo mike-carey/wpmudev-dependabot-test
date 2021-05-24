@@ -3,12 +3,12 @@
 ##
 ---
 version: 2
-# registries:
-#   wpmudev:
-#     type: composer-repository
-#     url: https://wpmudev.com/
-#     username: ${{secrets.WPMUDEV_API_KEY}}
-#     password: ''
+registries:
+  wpmudev:
+    type: composer-repository
+    url: https://wpmudev.com/
+    username: ${{secrets.WPMUDEV_API_KEY}}
+    password: ${{secrets.EMPTY_STRING}}
 updates:
   - package-ecosystem: composer
     directory: "/"
@@ -19,5 +19,5 @@ updates:
     labels:
       - maintenance
       - dependencies
-    # registries:
-    #   - wpmudev
+    registries:
+      - wpmudev
