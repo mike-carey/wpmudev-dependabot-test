@@ -37,7 +37,8 @@
     "wpmudev/wp-smush-pro": "^3.8",
     "wpmudev/wpmu-dev-dashboard": "^4.10",
     "wpackagist-theme/twentytwenty": "^1.6",
-    "wpackagist-plugin/yet-another-related-posts-plugin": "^5.10"
+    "wpackagist-plugin/yet-another-related-posts-plugin": "^5.10",
+    "wpackagist-plugin/jetpack": "^9.2"
   },
   "require-dev": {
     "wp-cli/wp-cli": "^2.3"
