@@ -62,5 +62,5 @@ jobs:
               issue_number: issue_number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: '@dependabot squash',
+              body: '@dependabot squash and merge',
             });
