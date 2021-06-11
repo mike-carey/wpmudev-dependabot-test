@@ -49,7 +49,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: 'Thank you dependabot 🎊',
-              event: APPROVE,
+              event: 'APPROVE',
             });
 
       - uses: actions/github-script@v4
