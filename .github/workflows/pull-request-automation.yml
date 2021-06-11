@@ -1,0 +1,24 @@
+---
+name: Automatic pull request review
+
+on: [pull_request]
+
+jobs:
+  automate-pullrequest-review:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Approve pull request
+        if: github.actor == 'dependabot[bot]'
+        uses: andrewmusgrave/automatic-pull-request-review@0.0.5
+        with:
+          repo-token: ${{ secrets.BOT_TOKEN }}
+          event: APPROVE
+          body: 'Thank you dependabot 🎊'
+  auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ahmadnassri/action-dependabot-auto-merge@v2
+        with:
+          target: minor
+          github-token: ${{ secrets.BOT_TOKEN }}
