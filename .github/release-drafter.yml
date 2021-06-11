@@ -1,0 +1,14 @@
+---
+name-template: v$NEXT_MINOR_VERSION
+tag-template: v$NEXT_MINOR_VERSION
+categories:
+  - title: 🚀 Features
+    label: feature
+  - title: 🐛 Bug Fixes
+    label: bugfix
+  - title: 🧰 Maintenance
+    label: maintenance
+template: |
+  ## v$NEXT_MINOR_VERSION
+
+  $CHANGES

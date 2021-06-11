@@ -19,5 +19,6 @@ updates:
     labels:
       - maintenance
       - dependencies
+      - automerge
     registries:
       - wpmudev
