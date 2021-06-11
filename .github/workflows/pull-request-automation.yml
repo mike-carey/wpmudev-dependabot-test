@@ -1,24 +1,64 @@
 ---
 name: Automatic pull request review
 
-on: [pull_request]
+on:
+  workflow_run:
+    workflows: ["Receive PR"]
+    types:
+      - completed
 
 jobs:
-  automate-pullrequest-review:
+  # @see https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+  upload:
     runs-on: ubuntu-latest
+    if: >
+      ${{ github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.actor == 'dependabot[bot]' }}
     steps:
-      - name: Approve pull request
-        if: github.actor == 'dependabot[bot]'
-        uses: andrewmusgrave/automatic-pull-request-review@0.0.5
+      - name: 'Download artifact'
+        uses: actions/github-script@v3.1.0
         with:
-          repo-token: ${{ secrets.BOT_TOKEN }}
-          event: APPROVE
-          body: 'Thank you dependabot 🎊'
-  auto-merge:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ahmadnassri/action-dependabot-auto-merge@v2
+          script: |
+            var artifacts = await github.actions.listWorkflowRunArtifacts({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               run_id: ${{github.event.workflow_run.id }},
+            });
+            var matchArtifact = artifacts.data.artifacts.filter((artifact) => {
+              return artifact.name == "pr"
+            })[0];
+            var download = await github.actions.downloadArtifact({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               artifact_id: matchArtifact.id,
+               archive_format: 'zip',
+            });
+            var fs = require('fs');
+            fs.writeFileSync('${{github.workspace}}/pr.zip', Buffer.from(download.data));
+      - run: unzip pr.zip
+
+      - uses: actions/github-script@v4
         with:
-          target: minor
-          github-token: ${{ secrets.BOT_TOKEN }}
+          script: |
+            var fs = require('fs');
+            var issue_number = Number(fs.readFileSync('./NR'));
+            await github.pulls.createReview({
+              pull_number: issue_number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: 'Thank you dependabot 🎊',
+              event: APPROVE,
+            });
+
+      - uses: actions/github-script@v4
+        with:
+          script: |
+            var fs = require('fs');
+            var issue_number = Number(fs.readFileSync('./NR'));
+            await github.issues.createComment({
+              issue_number: issue_number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '@dependabot squash',
+            });
