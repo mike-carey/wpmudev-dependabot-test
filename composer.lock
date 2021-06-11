@@ -306,15 +306,15 @@
         },
         {
             "name": "wpackagist-plugin/yet-another-related-posts-plugin",
-            "version": "5.21.0",
+            "version": "5.23.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/yet-another-related-posts-plugin/",
-                "reference": "tags/5.21.0"
+                "reference": "tags/5.23.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/yet-another-related-posts-plugin.5.21.0.zip"
+                "url": "https://downloads.wordpress.org/plugin/yet-another-related-posts-plugin.5.23.0.zip"
             },
             "require": {
                 "composer/installers": "~1.0"
